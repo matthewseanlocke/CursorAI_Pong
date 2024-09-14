@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pong Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Entry Screen -->
+    <div id="entry-screen">
+        <div id="logo-container">
+            <div id="pong-logo"></div>
+        </div>
+        <div id="win-lose-message"></div>
+        <div id="difficulty-selector">
+            <button id="left-arrow" class="arrow-button">&#9664;</button>
+            <div id="difficulty-text-container">
+                <span id="difficulty-text">EASY</span>
+            </div>
+            <button id="right-arrow" class="arrow-button">&#9654;</button>
+        </div>
+
+        <div id="insert-coin">INSERT COIN</div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" style="display: none;">
+        <canvas id="game-canvas"></canvas>
+        <div id="speed-meter">
+            <!-- 10 segments -->
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+            <div class="meter-segment"></div>
+        </div>
+        </canvas>
+        <div id="score-board">
+            <div id="player-score-container">
+                <span id="player-score">0</span>
+            </div>
+            <div id="ai-score-container">
+                <span id="ai-score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

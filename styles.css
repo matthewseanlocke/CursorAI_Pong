@@ -1,0 +1,289 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+#entry-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+#logo-container {
+    margin-bottom: 30px;
+}
+
+#pong-logo {
+    display: grid;
+    grid-template-columns: repeat(22, 20px);
+    grid-template-rows: repeat(7, 20px);
+    gap: 2px;
+}
+
+.logo-block {
+    background-color: #fff;
+    animation: bounceIn 1.5s forwards, blockPulse 6s infinite 1.5s;
+    opacity: 0;
+    transform: translateY(-100vh);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: translateY(-100vh);
+        transform: scale(1.25);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(30px);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translateY(-15px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+        transform: scale(2);
+        opacity: 1;
+    }
+}
+
+@keyframes blockPulse {
+    0%, 100% {
+        transform: scale(1.25);
+    }
+    5% {
+        transform: scale(1.5);
+    }
+    10% {
+        transform: scale(1.25);
+    }
+    15% {
+        transform: scale(1.15);
+    }
+    20%, 100% {
+        transform: scale(2);
+    }
+}
+
+
+#win-lose-message {
+    font-size: 3em;
+    margin-top: 20px;
+}
+
+#difficulty-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+#difficulty-selector:hover {
+    transform: scale(1.25);
+}
+
+.arrow-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0 40px; /* Add margin to space out the arrows */
+}
+
+#difficulty-text-container {
+    width: 120px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#difficulty-text {
+    font-size: 2em;
+    margin: 0 10px;
+}
+
+#insert-coin {
+    font-size: 2em;
+    margin-top: 30px;
+    animation: blink 1s infinite;
+    cursor: pointer;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+/* Game Container Styles */
+#game-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 100px; /* Increased padding to make room for the score */
+    box-sizing: border-box;
+}
+
+#game-canvas {
+    position: relative;
+    background-color: #000;
+    display: flex;
+    margin: 0 auto;
+    border: 4px solid #fff;
+    box-sizing: border-box;
+    width: 85%;
+    height: 85%;
+    max-width: 1500px;
+    max-height: 900px;
+    transition: opacity 0.5s ease-out;
+}
+
+#score-board {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+    font-size: 6em;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+#score-board span {
+    margin: 0 30px;
+}
+
+#speed-meter {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.game-element {
+    transform: translateY(-100vh) rotate(-10deg) scale(0.8);
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.7s ease-out;
+}
+
+.game-element.animate {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+}
+
+.meter-segment {
+    width: 80px;
+    height: 80px;
+    background-color: #555;
+    margin: 0 2px; /* Adjust margins for horizontal spacing */
+}
+
+.meter-segment.active {
+    background-color: #0f0;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+/* Test Buttons */
+#test-buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#test-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Win/Lose Message Animations */
+.rainbow-text {
+    animation: rainbow 1s infinite;
+}
+
+@keyframes rainbow {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+}
+
+.flash-red {
+    animation: flashRed 1s infinite;
+}
+
+@keyframes flashRed {
+    0%, 50%, 100% { color: red; }
+    25%, 75% { color: #fff; }
+}
+
+/* Score Update Animation */
+.score-update {
+    animation: scaleUp 0.5s;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Additional Styles */
+/*#game-container canvas {
+    max-width: calc(100% - 20px);
+    max-height: calc(100% - 20px);
+    box-sizing: border-box;
+}*/
