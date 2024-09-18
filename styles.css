@@ -281,9 +281,12 @@ body, html {
     }
 }
 
-/* Additional Styles */
-/*#game-container canvas {
-    max-width: calc(100% - 20px);
-    max-height: calc(100% - 20px);
-    box-sizing: border-box;
-}*/
+@media (max-width: 768px) {
+    #score-board {
+        font-size: 4em; /* Smaller font size for smaller screens */
+    }
+    .meter-segment {
+        width: 40px; /* Smaller segments for the speed meter */
+        height: 40px;
+    }
+}
