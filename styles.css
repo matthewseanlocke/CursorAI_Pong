@@ -290,3 +290,22 @@ body, html {
         height: 40px;
     }
 }
+
+@media (orientation: portrait) {
+    #game-container {
+        transform-origin: center center;
+        transform: rotate(-90deg) translateX(50%);
+        position: relative;
+        margin-top: 75%;
+        width: 105%;
+        height: 105%;
+    }
+
+    /* Adjust canvas and other elements if necessary */
+    #game-canvas {
+        width: 100%; /* Adjust if necessary */
+        height: 100%; /* Adjust if necessary */
+    }
+
+    /* Additional styles to adjust the layout of other elements may be needed */
+}

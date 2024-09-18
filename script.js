@@ -506,18 +506,32 @@ canvas.addEventListener('touchmove', handleMove);
 
 function handleMove(e) {
     let rect = canvas.getBoundingClientRect();
-    let scaleY = canvas.height / rect.height;
+    let clientX = e.clientX || (e.touches && e.touches[0].clientX);
     let clientY = e.clientY || (e.touches && e.touches[0].clientY);
-    let mouseY = (clientY - rect.top) * scaleY;
-    playerPaddle.y = mouseY - playerPaddle.height / 2;
 
-    // Prevent paddle from going out of bounds
+    // Calculate the vertical position of the touch or mouse event relative to the canvas
+    let scaleY = canvas.height / rect.height;
+    let scaleX = canvas.width / rect.width;
+    let mouseY = (clientY - rect.top) * scaleY;
+    let mouseX = (clientX - rect.left) * scaleX;
+
+    // Check if the device is in portrait or landscape mode
+    let isPortrait = window.innerHeight > window.innerWidth;
+
+    if (isPortrait) {
+        // In portrait mode, the paddle should respond to horizontal finger movement
+        playerPaddle.y = mouseX - playerPaddle.height / 2;
+    } else {
+        // In landscape mode, the paddle should respond to vertical finger movement
+        playerPaddle.y = mouseY - playerPaddle.height / 2;
+    }
+
+    // Prevent the paddle from going out of the canvas bounds
     playerPaddle.y = Math.max(0, Math.min(canvas.height - playerPaddle.height, playerPaddle.y));
 
     // Prevent default behavior to avoid scrolling on mobile
     e.preventDefault();
 }
-
 
 
 
