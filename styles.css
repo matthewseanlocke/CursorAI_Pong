@@ -10,25 +10,56 @@ body, html {
 
 #entry-screen {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
 }
 
-
 #logo-container {
-    margin-bottom: 30px;
+    width: 50vw; /* Set the desired width */
+    height: 10vh; /* Set the desired height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10vh;
+    margin-top: 5vh;
 }
 
 #pong-logo {
-    display: grid;
-    grid-template-columns: repeat(22, 20px);
-    grid-template-rows: repeat(7, 20px);
-    gap: 2px;
+    display: flex;
+    grid-template-columns: repeat(16, 1fr); /* Adjust based on the number of columns in your logo */
+    grid-template-rows: repeat(7, 1fr); /* Adjust based on the number of rows in your logo */
+    gap: 2px; /* Adjust the gap between blocks if needed */
+    transform: scale(0.5); /* Scale down the logo to fit within the container */
+    margin-top: 5vh;
+}
+
+@media (orientation: landscape) {
+    #logo-container {
+        width: 100vw; /* Use full width in landscape mode */
+        height: 20vh; /* Adjust height as needed */
+    }
+
+    #pong-logo {
+        transform: scale(0.5); /* Adjust scale to fit within the container */
+        margin-top: 30vh;
+    }
+}
+
+@media (orientation: portrait) {
+    #logo-container {
+        width: 100vw; /* Use full width in landscape mode */
+        height: 20vh; /* Adjust height as needed */
+    }
+
+    #pong-logo {
+        transform: scale(1); /* Adjust scale to fit within the container */
+        margin-top: 20vh;
+    }
 }
 
 .logo-block {
@@ -85,10 +116,26 @@ body, html {
 }
 
 #win-lose-message {
-    font-size: 6em;
-    margin-top: 20px;
+    min-height: 1px; /* Adjust the height as needed */
     animation: rainbow 1s infinite; /* Add this line */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
 
+@media (orientation: portrait) {
+    #win-lose-message {
+        margin-top: 15vh;
+        font-size: 7vh; /* Adjust font size for portrait orientation */
+    }
+}
+
+@media (orientation: landscape) {
+    #win-lose-message {
+        margin-top: 20vh;
+        font-size: 10vh; /* Adjust font size for landscape orientation */
+    }
 }
 
 @keyframes rainbow {
@@ -106,8 +153,10 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 20vh;
     transition: transform 0.3s ease;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
 }
 
 @media (min-width: 1024px) {
@@ -132,25 +181,64 @@ body, html {
 }
 
 #difficulty-text-container {
-    width: 350px;
+    width: 35vw;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+
+@media (orientation: portrait) {
+    #difficulty-text-container {
+        width: 30vh; /* Adjust font size for portrait orientation */
+    }
+}
+
+@media (orientation: landscape) {
+    #difficulty-text-container {
+        width: 50vh; /* Adjust font size for landscape orientation */
+    }
 }
 
 #difficulty-text {
-    font-size: 4em;
-    margin: 30px;
+    font-size: 4vh;
+    margin: 3vh;
+}
+
+@media (orientation: portrait) {
+    #difficulty-text {
+        font-size: 5vh; /* Adjust font size for portrait orientation */
+    }
+}
+
+@media (orientation: landscape) {
+    #difficulty-text {
+        font-size: 10vh; /* Adjust font size for landscape orientation */
+    }
 }
 
 #insert-coin {
     font-size: 3em;
-    margin-top: 50px;
+    margin-bottom: 15vh;
     animation: blink 1s infinite;
     cursor: pointer;
+    
 }
 
+@media (orientation: portrait) {
+    #insert-coin {
+        font-size: 5vh; /* Adjust font size for portrait orientation */
+    }
+}
+
+@media (orientation: landscape) {
+    #insert-coin {
+        font-size: 10h; /* Adjust font size for landscape orientation */
+    }
+}
+
+/* Insert Coin animation */
 @keyframes blink {
     0%, 50%, 100% { opacity: 1; }
     25%, 75% { opacity: 0; }
@@ -187,7 +275,7 @@ body, html {
 
 #score-board {
     position: absolute;
-    top: 150px;
+    top: 15vh;
     left: 0;
     right: 0;
     font-size: 6em;
@@ -197,8 +285,21 @@ body, html {
     pointer-events: none;
 }
 
+@media (orientation: portrait) {
+    #score-board {
+        top: 8vh; /* Adjust font size for portrait orientation */
+    }
+}
+
+@media (orientation: landscape) {
+    #score-board {
+        top: 10vw; /* Adjust font size for landscape orientation */
+    }
+}
+
+/* how far apart the scores are from each other */
 #score-board span {
-    margin: 0 30px;
+    margin: 0 60px;
 }
 
 #speed-meter {
@@ -221,8 +322,8 @@ body, html {
 }
 
 .meter-segment {
-    width: 80px;
-    height: 80px;
+    width: 8vw;
+    height: 10vh;
     background-color: #555;
     margin: 0 2px; /* Adjust margins for horizontal spacing */
 }
@@ -237,20 +338,6 @@ body, html {
     top: 0;
     left: 0;
     pointer-events: none;
-}
-
-/* Test Buttons */
-#test-buttons {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#test-buttons button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    cursor: pointer;
 }
 
 /* Win/Lose Message Animations */
@@ -292,16 +379,6 @@ body, html {
     }
     100% {
         transform: scale(1);
-    }
-}
-
-@media (max-width: 768px) {
-    #score-board {
-        font-size: 4em; /* Smaller font size for smaller screens */
-    }
-    .meter-segment {
-        width: 40px; /* Smaller segments for the speed meter */
-        height: 40px;
     }
 }
 
