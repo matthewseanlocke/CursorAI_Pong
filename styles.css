@@ -180,6 +180,18 @@ body, html {
     margin: 0 40px; /* Add margin to space out the arrows */
 }
 
+@media (orientation: portrait) {
+    .arrow-button {
+        font-size: 5em;
+    }
+}
+
+@media (orientation: landscape) {
+    .arrow-button {
+        font-size: 3em;
+    }
+}
+
 #difficulty-text-container {
     width: 35vw;
     text-align: center;
