@@ -84,10 +84,22 @@ body, html {
     }
 }
 
-
 #win-lose-message {
-    font-size: 3em;
+    font-size: 6em;
     margin-top: 20px;
+    animation: rainbow 1s infinite; /* Add this line */
+
+}
+
+@keyframes rainbow {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
 }
 
 #difficulty-selector {
@@ -98,8 +110,10 @@ body, html {
     transition: transform 0.3s ease;
 }
 
-#difficulty-selector:hover {
-    transform: scale(1.25);
+@media (min-width: 1024px) {
+    #difficulty-selector:hover {
+        transform: scale(1.25);
+    }
 }
 
 .arrow-button {
@@ -118,7 +132,7 @@ body, html {
 }
 
 #difficulty-text-container {
-    width: 120px;
+    width: 350px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -126,13 +140,13 @@ body, html {
 }
 
 #difficulty-text {
-    font-size: 2em;
-    margin: 0 10px;
+    font-size: 4em;
+    margin: 30px;
 }
 
 #insert-coin {
-    font-size: 2em;
-    margin-top: 30px;
+    font-size: 3em;
+    margin-top: 50px;
     animation: blink 1s infinite;
     cursor: pointer;
 }

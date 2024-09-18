@@ -80,9 +80,9 @@ const difficultySettings = {
         color: 'yellow'
     },
     'MEDIUM': {
-        paddleHeightPercent: 0.15,
+        paddleHeightPercent: 0.20,
         aiSpeedPercent: 0.01,
-        ballSizePercent: 0.015,
+        ballSizePercent: 0.04,
         ballSpeed: { x: 6.5, y: 5.5 },
         speedIncreaseFactor: 1.15,
         color: 'orange'
@@ -90,7 +90,7 @@ const difficultySettings = {
     'HARD': {
         paddleHeightPercent: 0.1,
         aiSpeedPercent: 0.01,
-        ballSizePercent: 0.01,
+        ballSizePercent: 0.03,
         ballSpeed: { x: 8, y: 7 },
         speedIncreaseFactor: 1.2,
         color: 'red'
@@ -599,3 +599,19 @@ class ConfettiPiece {
         ctx.fillRect(this.x, this.y, this.size, this.size);
     }
 }
+
+function displayWinLoseMessage(isWinner) {
+    const winLoseMessage = document.getElementById('win-lose-message');
+    if (isWinner) {
+        winLoseMessage.textContent = 'You Win!';
+        winLoseMessage.classList.add('rainbow-text');
+    } else {
+        winLoseMessage.textContent = 'Game Over';
+        winLoseMessage.classList.remove('rainbow-text');
+        winLoseMessage.style.color = 'red';
+    }
+}
+
+// Example usage:
+// displayWinLoseMessage(true);  // For winner
+// displayWinLoseMessage(false); // For game over
