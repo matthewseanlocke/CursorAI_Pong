@@ -41,9 +41,9 @@ function generatePongLogo() {
     pongLogo.style.gridTemplateColumns = `repeat(${pongLogoData[0].length}, ${blockSize}px)`;
     pongLogo.style.gridTemplateRows = `repeat(${pongLogoData.length}, ${blockSize}px)`;
     pongLogo.style.gap = '2px'; // Adjust the gap between blocks if needed
-    }
+}
+
 // Global Variables
-// Add this to your global variables
 let speedLevel = 0;
 let canvas = document.getElementById('game-canvas');
 let ctx = canvas.getContext('2d');
@@ -60,7 +60,6 @@ let playerScoreElement = document.getElementById('player-score');
 let aiScoreElement = document.getElementById('ai-score');
 let speedMeter = document.querySelectorAll('.meter-segment');
 
-
 let difficulties = ['EASY', 'MEDIUM', 'HARD', 'LUDICROUS'];
 let difficultyIndex = 0;
 let gameParams;
@@ -68,6 +67,7 @@ let playerScore = 0;
 let aiScore = 0;
 let gameLoop;
 let ball, playerPaddle, aiPaddle;
+let confettiPieces = [];
 
 // Difficulty Settings
 const difficultySettings = {
@@ -96,12 +96,12 @@ const difficultySettings = {
         color: 'red'
     },
     'LUDICROUS': {
-    paddleHeightPercent: 0.05,
-    aiSpeedPercent: 0.015,
-    ballSizePercent: 0.005,
-    ballSpeed: { x: 12, y: 10 },
-    speedIncreaseFactor: 1.3,
-    color: 'magenta'
+        paddleHeightPercent: 0.05,
+        aiSpeedPercent: 0.015,
+        ballSizePercent: 0.005,
+        ballSpeed: { x: 12, y: 10 },
+        speedIncreaseFactor: 1.3,
+        color: 'magenta'
     },
 };
 
@@ -390,7 +390,6 @@ function endGame(result) {
     }, 3000);
 }
 
-
 // Reset Game
 function resetGame() {
     playerScore = 0;
@@ -533,8 +532,6 @@ function handleMove(e) {
     e.preventDefault();
 }
 
-
-
 // Window Resize
 window.addEventListener('resize', resizeCanvas);
 
@@ -551,16 +548,20 @@ function resizeCanvas() {
     canvas.height = height;
     confettiCanvas.width = window.innerWidth;
     confettiCanvas.height = window.innerHeight;
-}
 
+    // Recalculate paddle positions if they are initialized
+    if (playerPaddle && aiPaddle) {
+        let params = gameParams;
+        playerPaddle.height = canvas.height * params.paddleHeightPercent;
+        aiPaddle.height = canvas.height * params.paddleHeightPercent;
+        playerPaddle.y = (canvas.height - playerPaddle.height) / 2;
+        aiPaddle.y = (canvas.height - aiPaddle.height) / 2;
+        aiPaddle.x = canvas.width - aiPaddle.width - 10; // Ensure AI paddle's x position is correct
 
-// Confetti Effect
-let confettiPieces = [];
-function startConfetti() {
-    for (let i = 0; i < 100; i++) {
-        confettiPieces.push(new ConfettiPiece());
+        // Redraw paddles and ball
+        drawPaddles();
+        drawBall();
     }
-    requestAnimationFrame(updateConfetti);
 }
 
 function stopConfetti() {
@@ -612,6 +613,7 @@ function displayWinLoseMessage(isWinner) {
     }
 }
 
-// Example usage:
-// displayWinLoseMessage(true);  // For winner
-// displayWinLoseMessage(false); // For game over
+function startConfetti() {
+    confettiPieces = Array.from({ length: 100 }, () => new ConfettiPiece());
+    updateConfetti();
+}
